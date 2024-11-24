@@ -1,0 +1,10 @@
+<h1>Contributions for {{member.name}} </h1>
+<ul>
+    {%for contribution in contributions%}
+       <li>{{contribution.amount}} on {{contribution.date}}</li>
+    {%empty%}
+       <li>No contributions recorded.</li>  
+    {%endfor%}
+
+</ul>
+<a href="{%url 'member_list'%}">Back to Members</a>

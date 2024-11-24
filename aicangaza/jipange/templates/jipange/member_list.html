@@ -1,0 +1,63 @@
+{%load static%}
+<head>
+    <link rel="stylesheet" type="text/css" href="{% static 'jipange/style.css' %}">
+</head>
+<body>
+  <div class="container">
+  <h1>Contributions</h1>
+  <a href="{% url 'add_member' %}">Home</a>
+  <a href="{% url 'add_member' %}">Add Member</a>
+  <a href="{% url 'add_contribution' %}">Add Contribution</a>
+  <a href="{% url 'add_event' %}">Add Event Contribution</a>
+  </div>
+  <div class="members_list">
+     <table>
+       <thead>
+          <tr>
+            <th>Name</th>
+            <th>Contributions</th>
+            <th>Date</th>
+            <th>Event</th>
+           </tr>
+       </thead>
+       <tbody>
+           {% for member in members %}
+           <tr>
+           <td>{{ member.name }}</td>
+           <td>
+              <ul>
+                  {% for contribution in member.contribution_list %}
+                      <li>{{ contribution.amount }}</li>
+                  {% empty %}
+                      <li>No contributions recorded</li>
+                  {% endfor %}
+              </ul>
+           </td>
+           <td>
+            <ul>
+              {% for contribution in member.contribution_list %}
+                <li>{{ contribution.date }}</li>
+              {% empty %}
+                <li>No contributions recorded</li>
+              {% endfor %}
+            </ul>
+          </td>
+          <td>
+            <ul>
+              {% for contribution in member.contribution_list %}
+                <li>{{ contribution.event }}</li>
+              {% empty %}
+                <li>No contributions recorded</li>
+              {% endfor %}
+            </ul>
+          </td>
+           </tr>
+           {% empty %}
+           <tr>
+           <td colspan="2">No members found.</td>
+           </tr>
+           {% endfor %}
+        </tbody>
+      </table>
+      </div>
+</body>
