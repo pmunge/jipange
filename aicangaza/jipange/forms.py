@@ -14,7 +14,7 @@ class CreateUserForm(UserCreationForm):
 class MemberForm(forms.ModelForm):
     class Meta:
         model = Member
-        fields = ['name']
+        fields = ['name', 'number', 'contact', 'mtaa']
 #record a new contribution
 class ContributionForm(forms.ModelForm):
     class Meta:

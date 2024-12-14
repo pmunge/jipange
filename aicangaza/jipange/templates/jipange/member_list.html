@@ -1,63 +1,44 @@
 {% extends 'jipange/base.html'%}
-{%block content%}
-
+{% block content %}
 <body>
   <div class="container">
-  <h1>Contributions</h1>
-  <a href="{% url 'register' %}">Register</a>
-  <a href="{% url 'add_member' %}">Add Member</a>
+  <h1>Jipange Members</h1>
   <a href="{% url 'add_contribution' %}">Add Contribution</a>
+  <a href="{% url 'add_event' %}">Add Event Contribution</a>
   <a href="{% url 'event_list' %}">list of events</a>
   </div>
-  <div class="members_list">
-     <table class="table table-light table-hover">
-       <thead class="table-dark">
-          <tr>
-            <th scope="col">Name</th>
-            <th scope="col">Contributions</th>
-            <th scope="col">Date</th>
-            <th scope="col">Event</th>
-           </tr>
-       </thead>
-       <tbody>
-           {% for member in members %}
-           <tr>
-           <td>{{ member.name }}</td>
-           <td>
-              <ul>
-                  {% for contribution in member.contribution_list %}
-                      <li>{{ contribution.amount }}</li>
-                  {% empty %}
-                      <li>No contributions recorded</li>
-                  {% endfor %}
-              </ul>
-           </td>
-           <td>
-            <ul>
-              {% for contribution in member.contribution_list %}
-                <li>{{ contribution.date }}</li>
-              {% empty %}
-                <li>No contributions recorded</li>
-              {% endfor %}
-            </ul>
-          </td>
-          <td>
-            <ul>
-              {% for contribution in member.contribution_list %}
-                <li>{{ contribution.event }}</li>
-              {% empty %}
-                <li>No contributions recorded</li>
-              {% endfor %}
-            </ul>
-          </td>
-           </tr>
-           {% empty %}
-           <tr>
-           <td colspan="2">No members found.</td>
-           </tr>
-           {% endfor %}
-        </tbody>
-      </table>
-      </div>
+  <hr>
+  <a class="btn btn-outline.primary btn-sm" href="{%url 'add_member'%}">
+    New Member
+  </a>
+  <hr>
+  <table class="table table-light table-hover">
+    <thead class="table-dark">
+      <tr>
+        <th scope="col">ID</th>
+        <th scope="col">Name</th>
+        <th scope="col">Member Number</th>
+        <th scope="col">Contact</th>
+        <th scope="col">Mtaa</th> 
+        
+        <th scope="col">View</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% if events %}
+        {% for event in events %}
+        <tr>
+            <td>{{member.id}}</td>
+            <td>{{member.name}}</td>
+            <td>{{member.number}}</td>
+            <td>{{member.contact}}</td>
+            <td>{{member.mtaa}}</td>
+        </tr>
+        {% endfor %}
+      {% endif %}
+    </tbody>
+  </table>
+  
 </body>
-{%endblock%}
+{% endblock %}
+

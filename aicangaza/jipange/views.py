@@ -42,27 +42,18 @@ def user_logout(request):
 def dashboard(request):
      return render(request, 'jipange/dashboard.html')           
 # views to manage members and contributions
-def member_list (request):
-    members = Member.objects.prefetch_related('contributions_list').all()
-    return render(request, 'jipange/member_list.html', {'members': members})
+def contributionrecords (request):
+    members = Member.objects.prefetch_related('contributions_list').exclude(contributions_list__isnull=True).all()
+    return render(request, 'jipange/contributionrecords.html', {'members': members})
 
-#functions that adds new members to jipange
-def add_member(request):
-    if request.method == 'POST':
-        form = MemberForm(request.POST)
-        if form.is_valid ():
-            form.save()
-            return redirect('member_list')
-    else:
-            form = MemberForm()
-    return render(request, 'jipange/add_member.html', {'form':form})
+
 # function that adds member's contribution
 def add_contribution( request):
     if request.method == 'POST':
         form = ContributionForm(request.POST)
         if form.is_valid():
             form.save()
-            return redirect('member_list')
+            return redirect('contributionrecords.html')
     else:
         form = Contribution()
     return render(request, 'jipange/add_contribution.html',{'form':form})
@@ -86,3 +77,22 @@ def add_event(request):
     else:
             form = EventForm()
     return render(request, 'jipange/add_event.html', {'form':form})
+
+def member_list (request):
+    members = Member.objects.all()
+    print("Members:", members)
+    context = {'members': members}
+    return render(request, 'jipange/member_list.html', context=context)
+
+def add_member(request):
+    if request.method == 'POST':
+         form = MemberForm(request.POST)
+         if form.is_valid ():
+             form.save()
+             print("New member saved!")
+             return redirect('member_list')
+    else:
+            form = MemberForm()
+    return render(request, 'jipange/add_member.html', {'form':form})
+
+
