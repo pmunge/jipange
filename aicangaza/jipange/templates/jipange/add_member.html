@@ -1,6 +1,20 @@
-<h1>Add Member</h1>
-<form method="post">
-    {%csrf_token%}
-    {{form.as_p}}
-    <button type="submit">Add</button>
-</form>
+
+{%extends 'jipange/base.html' %}
+{%block content%}
+<body>
+    <div class="container">
+        <h1>Add Member</h1>
+        <br>
+        <br>
+    <form method="POST" autocomplete="off">
+        {%csrf_token%}
+        {{form.as_p}}
+        <br>
+        <button type="submit">Add</button>
+    </form>
+    </div>
+    
+</body>
+
+
+{% endblock%}

@@ -1,0 +1,23 @@
+{% extends 'jipange/base.html'%}
+{% block content %}
+<body>
+    <div class="container">
+        <h3> Login </h3>
+        <hr>
+        <br>
+        <form method="POST", autocomplete="off">
+            {% csrf_token %}
+            {{form.as_p}}
+            <br>
+            <button type="submit">login</button>
+    
+        </form>
+        <br>
+        <div class="text-center">
+            <p>Don't have an account?</p><a href="{% url 'register' %}">Register</a>
+        </div>
+        <br>
+    </div>
+</body>
+
+{% endblock %}

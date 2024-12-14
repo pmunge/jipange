@@ -1,23 +1,22 @@
-{%load static%}
-<head>
-    <link rel="stylesheet" type="text/css" href="{% static 'jipange/style.css' %}">
-</head>
+{% extends 'jipange/base.html'%}
+{%block content%}
+
 <body>
   <div class="container">
   <h1>Contributions</h1>
-  <a href="{% url 'add_member' %}">Home</a>
+  <a href="{% url 'register' %}">Register</a>
   <a href="{% url 'add_member' %}">Add Member</a>
   <a href="{% url 'add_contribution' %}">Add Contribution</a>
-  <a href="{% url 'add_event' %}">Add Event Contribution</a>
+  <a href="{% url 'event_list' %}">list of events</a>
   </div>
   <div class="members_list">
-     <table>
-       <thead>
+     <table class="table table-light table-hover">
+       <thead class="table-dark">
           <tr>
-            <th>Name</th>
-            <th>Contributions</th>
-            <th>Date</th>
-            <th>Event</th>
+            <th scope="col">Name</th>
+            <th scope="col">Contributions</th>
+            <th scope="col">Date</th>
+            <th scope="col">Event</th>
            </tr>
        </thead>
        <tbody>
@@ -61,3 +60,4 @@
       </table>
       </div>
 </body>
+{%endblock%}
