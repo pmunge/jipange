@@ -3,16 +3,15 @@
 <body>
   <div class="container">
   <h1>Events</h1>
-  <a href="{% url 'add_member' %}">Home</a>
-  <a href="{% url 'add_member' %}">Add Member</a>
+  <a href="{% url 'member_list' %}">List of Mmembers</a>
   <a href="{% url 'add_contribution' %}">Add Contribution</a>
   <a href="{% url 'add_event' %}">Add Event Contribution</a>
-  <a href="{% url 'event_list' %}">list of events</a>
+  <a href="{% url 'event_list' %}">List of Events</a>
   </div>
   <hr>
   <a class="btn btn-outline.primary btn-sm" href="{%url 'add_event'%}">
     New Event
-  </a>
+  </a> 
   <hr>
   <table class="table table-light table-hover">
     <thead class="table-dark">

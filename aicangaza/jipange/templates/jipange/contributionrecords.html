@@ -5,9 +5,13 @@
   <div class="container">
   <h1>Contributions</h1>
   <a href="{% url 'member_list' %}">List of Members</a>
-  <a href="{% url 'add_contribution' %}">Add Contribution</a>
   <a href="{% url 'event_list' %}">List of Events</a>
   </div>
+  <hr>
+  <a class="btn btn-outline.primary btn-sm" href="{%url 'add_contribution'%}">
+    Add a Contribution
+  </a>
+  <hr>
   <div class="members_list">
      <table class="table table-light table-hover">
        <thead class="table-dark">
