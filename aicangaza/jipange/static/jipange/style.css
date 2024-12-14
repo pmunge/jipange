@@ -16,3 +16,34 @@ h1 {
     width: 500px,
 
 }
+.navbar-brand {
+    display: flex;
+    align-items: center;
+  }
+  
+  .aic-text, .angaza-text {
+    font-size: 24px; /* Adjust the font size as needed */
+    font-weight: bold; /* Optional for bolder text */
+  }
+  
+  .icon-between {
+    margin: 0 10px; /* Adjust spacing between the icon and the text */
+    font-size: 30px; /* Adjust the size of the icon */
+  }
+  
+  .fa-beat {
+    animation: beat 1s infinite; /* Optional: Makes the icon pulse */
+  }
+  
+  @keyframes beat {
+    0% {
+      transform: scale(1);
+    }
+    50% {
+      transform: scale(1.2);
+    }
+    100% {
+      transform: scale(1);
+    }
+  }
+  
