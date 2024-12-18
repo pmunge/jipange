@@ -6,15 +6,12 @@
   <a href="{% url 'add_contribution' %}">Add Contribution</a>
   <a href="{% url 'event_list' %}">list of events</a>
   </div>
-  <hr>
   <a class="btn btn-outline.primary btn-sm" href="{%url 'add_member'%}">
     New Member
   </a>
-  <hr>
   <table class="table table-light table-hover">
     <thead class="table-dark">
       <tr>
-        <th scope="col">ID</th>
         <th scope="col">Name</th>
         <th scope="col">Member Number</th>
         <th scope="col">Contact</th>
@@ -27,7 +24,6 @@
       {% if members %}
         {% for member in members %}
         <tr>
-            <td>{{member.id}}</td>
             <td>{{member.name}}</td>
             <td>{{member.number}}</td>
             <td>{{member.contact}}</td>

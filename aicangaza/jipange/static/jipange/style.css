@@ -46,4 +46,21 @@ h1 {
       transform: scale(1);
     }
   }
-  
+
+a{
+  padding: 10px 20px;             
+  background-color: #3498db;      
+  color: white;                   
+  text-decoration: none;           
+  border-radius: 5px;              
+  font-weight: bold;               
+  transition: background-color 0.3s, transform 0.3s; 
+}
+a:hover{
+  background-color: #2980b9;        
+  transform: scale(1.05); 
+}
+a:focus{
+  outline: none;                    
+  box-shadow: 0 0 5px rgba(52, 152, 219, 0.7);
+}

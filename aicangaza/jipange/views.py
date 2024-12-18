@@ -36,7 +36,9 @@ def my_login(request):
 #user logout
 def user_logout(request):
      auth.logout(request)
-     return redirect("login")   
+     return redirect("login")  
+
+#...CRUD functions 
 #dashboard view
 @login_required(login_url = 'login')
 def dashboard(request):
@@ -48,6 +50,7 @@ def contributionrecords (request):
 
 
 # function that adds member's contribution
+@login_required(login_url = 'login')
 def add_contribution( request):
     if request.method == 'POST':
         form = ContributionForm(request.POST)
@@ -58,11 +61,14 @@ def add_contribution( request):
         form = Contribution()
     return render(request, 'jipange/add_contribution.html',{'form':form})
 
+@login_required(login_url = 'login')
 def member_contributions(request, member_id):
     member= Member.objects.get(id=member_id)  
     contributions = member.contributions.all()
     return render(request, 'jipange/member_contribution.html', {'member':member, 'contributions':contributions})              
  #function that adds an event 
+
+@login_required(login_url = 'login')
 def event_list (request):
     events = Event.objects.all()
     context = {'events': events}
@@ -78,9 +84,9 @@ def add_event(request):
             form = EventForm()
     return render(request, 'jipange/add_event.html', {'form':form})
 
+@login_required(login_url = 'login')
 def member_list (request):
     members = Member.objects.all()
-    print("Members:", members)
     context = {'members': members}
     return render(request, 'jipange/member_list.html', context=context)
 
@@ -89,10 +95,13 @@ def add_member(request):
          form = MemberForm(request.POST)
          if form.is_valid ():
              form.save()
-             print("New member saved!")
              return redirect('member_list')
     else:
             form = MemberForm()
     return render(request, 'jipange/add_member.html', {'form':form})
 
+# update members and events
+#@login_required(login_url = 'login')
+#def update (request):
+    
 

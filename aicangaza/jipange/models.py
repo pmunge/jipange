@@ -1,6 +1,6 @@
 from django.db import models
 
-# two models one for the members and one one for the contributions
+# my models are members, events and contribution
 
 class Member(models.Model):
     name = models.CharField(max_length=100)
@@ -29,7 +29,7 @@ class Contribution(models.Model):
     member = models.ForeignKey(Member,  related_name='contributions_list', on_delete= models.CASCADE)
     event = models.ForeignKey(Event, related_name='contributions_list', on_delete= models.CASCADE, default=1)
     def __str__(self):
-        return f"{self.amount} - {self.member.name} on {self.date}"      
+        return f"{self.amount} - {self.member.name} on {self.date} for {self.event.name}"      
 
 
     
