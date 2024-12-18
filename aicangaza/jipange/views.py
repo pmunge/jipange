@@ -95,7 +95,8 @@ def event_contribution( request, event_id):
         if form.is_valid():
             contribution=form.save(commit=False)
             contribution.event = event
-            return redirect('event_list.html')
+            contribution.save()
+            return redirect('event_list')
     else:
         form = ContributionForm(initial={'event':event})
     return render(request, 'jipange/add_contribution.html',{'form':form, 'event': event})
