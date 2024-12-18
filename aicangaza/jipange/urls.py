@@ -13,5 +13,6 @@ urlpatterns = [
     path('register', views.register, name="register"),
     path('login', views.my_login, name="login"),
     path('dashboard', views.dashboard, name="dashboard"),
+    path('event_contribution/<int:event_id>/event_contribution/', views.event_contribution, name='event_contribution')
     #path('update/<int:pk>', views.update, name="update"),
 ]

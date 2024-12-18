@@ -2,7 +2,7 @@
 {% block content%}
 <body>
     <div class="container">
-        <h1>Add Contribution</h1>
+        <h1>Add Contribution for {{ event.name }}</h1>
         <form method="post" autocomplete="off">
             {%csrf_token%}
             {{form.as_p}}
