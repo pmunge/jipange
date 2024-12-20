@@ -107,6 +107,8 @@ def member_list (request):
     context = {'members': members}
     return render(request, 'jipange/member_list.html', context=context)
 
+
+
 def add_member(request):
     if request.method == 'POST':
          form = MemberForm(request.POST)
@@ -116,6 +118,20 @@ def add_member(request):
     else:
             form = MemberForm()
     return render(request, 'jipange/add_member.html', {'form':form})
+
+@login_required(login_url = 'login')
+def member_contribution( request, member_id):
+    member = Member.objects.get(id=member_id)
+    if request.method == 'POST':
+        form = ContributionForm(request.POST)
+        if form.is_valid():
+            contribution=form.save(commit=False)
+            contribution.member = member
+            contribution.save()
+            return redirect('member_list', member_id=member.id)
+    else:
+        form = ContributionForm(initial={'member':member})
+    return render(request, 'jipange/add_contribution.html',{'form':form, 'member': member})
 
 # update members and events
 #@login_required(login_url = 'login')

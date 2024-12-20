@@ -13,6 +13,7 @@ urlpatterns = [
     path('register', views.register, name="register"),
     path('login', views.my_login, name="login"),
     path('dashboard', views.dashboard, name="dashboard"),
-    path('event_contribution/<int:event_id>/event_contribution/', views.event_contribution, name='event_contribution')
+    path('event_contribution/<int:event_id>/event_contribution/', views.event_contribution, name='event_contribution'),
+    path('member_contribution/<int:member_id>/member_contribution/', views.member_contribution, name='member_contribution'),
     #path('update/<int:pk>', views.update, name="update"),
 ]

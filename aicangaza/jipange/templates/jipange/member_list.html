@@ -28,11 +28,53 @@
             <td>{{member.number}}</td>
             <td>{{member.contact}}</td>
             <td>{{member.mtaa}}</td>
-        </tr>
+            <td>
+              <!-- toggle visibility -->
+              <button class="btn btn-info btn-sm" onclick="toggleTableVisibility({{ member.id }})">
+                View Contributions
+              </button>
+            </td>
+            <td><a href="{% url 'member_contribution' member_id=member.id %}"> Add Contribution</a></td>
+          </tr>
+          <tr id="contribution-row-{{ member.id }}" style="display: none;">
+            <td colspan="5">
+              <table class="table table-light table-hover">
+                <thead class="table-dark">
+                  <tr>
+                    <th scope="col">Member</th>
+                    <th scope="col">Amount</th>
+                    <th scope="col">Date</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {% for contribution in member.contributions %}
+                  <tr>
+                    <td>{{ contribution.member }}</td>
+                    <td>{{ contribution.amount }}</td>
+                    <td>{{ contribution.date }}</td>
+                  </tr>
+                  {% endfor %}
+                </tbody>
+              </table>
+            </td>
+          </tr>        
         {% endfor %}
       {% endif %}
     </tbody>
   </table>
+  
+  <script>
+    // to toggle the visibility of the inner table
+    function toggleTableVisibility(memberId) {
+      var tableRow = document.getElementById('contribution-row-' + memberId);
+      // Toggle the display style between 'none' and 'table'
+      if (tableRow.style.display === "none") {
+        tableRow.style.display = "table-row";  // Makes the contributions table visible
+      } else {
+        tableRow.style.display = "none";  // Hides the contributions table
+      }
+    }
+  </script>
   
 </body>
 {% endblock %}

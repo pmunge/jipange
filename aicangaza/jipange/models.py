@@ -10,9 +10,6 @@ class Member(models.Model):
     def __str__(self):
         return self.name
     
-    @property
-    def contribution_list(self):
-        return self.contributions_list.all()
     
 class Event(models.Model):
     name = models.CharField(max_length=100)

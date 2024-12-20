@@ -35,7 +35,7 @@ class EventForm(forms.ModelForm):
         fields = ['name', 'date','target','description' ]
 
         date = forms.DateField(
-        input_formats=['%d/%m/%Y'],  # Example format: Day/Month/Year (e.g., 18/12/2024)
+        input_formats=['%d/%m/%Y'],  #format: Day/Month/Year 
         widget=forms.DateInput(attrs={'type': 'text'})  # Customize the input widget
     )
 
