@@ -102,8 +102,10 @@ def event_contribution( request, event_id):
     return render(request, 'jipange/add_contribution.html',{'form':form, 'event': event})
 
 @login_required(login_url = 'login')
-def member_list (request):
+def member_list (request, member_id):
     members = Member.objects.all()
+    for member in members:
+        member.contributions = member.contributions_list.all()
     context = {'members': members}
     return render(request, 'jipange/member_list.html', context=context)
 
