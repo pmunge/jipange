@@ -49,24 +49,9 @@ def contributionrecords (request):
     return render(request, 'jipange/contributionrecords.html', {'members': members})
 
 
-# function that adds member's contribution
-@login_required(login_url = 'login')
-def add_contribution( request):
-    if request.method == 'POST':
-        form = ContributionForm(request.POST)
-        if form.is_valid():
-            form.save()
-            return redirect('contributionrecords.html')
-    else:
-        form = Contribution()
-    return render(request, 'jipange/add_contribution.html',{'form':form})
-
-@login_required(login_url = 'login')
-def member_contributions(request, member_id):
-    member= Member.objects.get(id=member_id)  
-    contributions = member.contributions.all()
-    return render(request, 'jipange/member_contribution.html', {'member':member, 'contributions':contributions})              
- #function that adds an event 
+# 
+              
+ #function that dispalys the list of events and shows every contribution for each event
 
 @login_required(login_url = 'login')
 def event_list (request):
@@ -76,6 +61,7 @@ def event_list (request):
     context = {'events': events}
     return render(request, 'jipange/event_list.html', context=context)
 
+#creates a new event
 def add_event(request):
     if request.method == 'POST':
          form = EventForm(request.POST)
