@@ -1,4 +1,23 @@
 {% extends 'jipange/base.html'%}
 {% block content %}
-<h1> Welcome to Jipange dashboard! {{user}}</h1>
+<body>
+    <div>
+        <table class="table table-light table-hover">
+            <tr>
+                <th>Event Name</th>
+                <th>Total Contribution</th>
+            </tr>
+            {% for event in event_contribution %}
+            <tr>
+                <td>{{ event.name }}</td>
+                <td>{{ event.event_total }}</td>
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+    <div>
+        
+
+    </div>
+</body>
 {% endblock %}

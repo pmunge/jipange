@@ -3,7 +3,8 @@ from.import views
 
 
 urlpatterns = [
-    path('', views.contributionrecords, name='contributionrecords'),
+    path('dashboard', views.dashboard, name="dashboard"),
+    #path('', views.contributionrecords, name='contributionrecords'),
     path('member_list/<int:member_id>/', views.member_list, name='member_list'),
     path('member_list', views.member_list, name='member_list'),
     path('event_list', views.event_list, name='event_list'),
@@ -13,8 +14,8 @@ urlpatterns = [
     #path('member/<int:member_id>/contributions/', views.member_contributions, name='member_contributions'),
     path('register', views.register, name="register"),
     path('login', views.my_login, name="login"),
-    path('dashboard', views.dashboard, name="dashboard"),
     path('event_contribution/<int:event_id>/event_contribution/', views.event_contribution, name='event_contribution'),
     path('member_contribution/<int:member_id>/member_contribution/', views.member_contribution, name='member_contribution'),
     #path('update/<int:pk>', views.update, name="update"),
+    #path('event_total', views.event_total, name='event_total')
 ]

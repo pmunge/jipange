@@ -4,6 +4,7 @@ from .forms import MemberForm, ContributionForm, EventForm, LoginForm, CreateUse
 from django.contrib.auth.models import auth
 from django.contrib.auth import authenticate
 from django.contrib.auth.decorators import login_required
+from django.db.models import Sum
 #  . register
 def register(request):
      form = CreateUserForm()
@@ -42,11 +43,12 @@ def user_logout(request):
 #dashboard view
 @login_required(login_url = 'login')
 def dashboard(request):
-     return render(request, 'jipange/dashboard.html')           
-# views to manage members and contributions
-def contributionrecords (request):
-    members = Member.objects.prefetch_related('contributions_list').exclude(contributions_list__isnull=True).all()
-    return render(request, 'jipange/contributionrecords.html', {'members': members})
+     event_contribution= Event.objects.annotate(event_total=Sum('contributions_list__amount'))
+     return render(request, 'dashboard', {'event_contribution': event_contribution})          
+
+#def contributionrecords (request):
+    #members = Member.objects.prefetch_related('contributions_list').exclude(contributions_list__isnull=True).all()
+    #return render(request, 'jipange/contributionrecords.html', {'members': members})
 
 
 # 
@@ -86,6 +88,10 @@ def event_contribution( request, event_id):
     else:
         form = ContributionForm(initial={'event':event})
     return render(request, 'jipange/add_contribution.html',{'form':form, 'event': event})
+
+# function that calculates the total contributions for each event
+
+
 
 @login_required(login_url = 'login')
 def member_list (request, member_id):
