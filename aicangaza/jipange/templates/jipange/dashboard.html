@@ -2,22 +2,24 @@
 {% block content %}
 <body>
     <div>
-        <table class="table table-light table-hover">
-            <tr>
-                <th>Event Name</th>
-                <th>Total Contribution</th>
-            </tr>
-            {% for event in event_contribution %}
-            <tr>
-                <td>{{ event.name }}</td>
-                <td>{{ event.event_total }}</td>
-            </tr>
-            {% endfor %}
-        </table>
+       <h1>Recent Event</h1>
+       {%if latest_event_contribution %}
+        <div>
+         <h2>{{latest_event_contribution.name}}</h2>
+         <p>{{latest_event_contribution.description}}</p>
+         <p>Date:{{latest_event_contribution.date}}</p>
+         <p>Target:{{latest_event_contribution.target}}</p>
+        </div>
+       {%else%}
+         <p>No events</p>
+       {% endif %}  
+        
     </div>
     <div>
-        
-
+        <a class="btn btn-outline.primary btn-sm" href="{%url 'add_event'%}">
+            New Event
+          </a>
+          <a href="{% url 'event_list' %}">list of events</a> 
     </div>
 </body>
 {% endblock %}

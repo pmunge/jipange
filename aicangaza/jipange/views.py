@@ -44,7 +44,14 @@ def user_logout(request):
 @login_required(login_url = 'login')
 def dashboard(request):
      event_contribution= Event.objects.annotate(event_total=Sum('contributions_list__amount'))
-     return render(request, 'dashboard', {'event_contribution': event_contribution})          
+     try:
+        latest_event_contribution=Event.objects.latest('date')
+     except ObjectDoesNotExist:
+        latest_event_contribution =None
+     return render(request, 'jipange/dashboard.html',{
+        'latest_event_contribution': latest_event_contribution,
+        'event_contribution':event_contribution,})
+          
 
 #def contributionrecords (request):
     #members = Member.objects.prefetch_related('contributions_list').exclude(contributions_list__isnull=True).all()
