@@ -1,14 +1,15 @@
 {% extends 'jipange/base.html'%}
 {% block content %}
+
 <body>
   <div class="container">
-  <h1>Events</h1>
-  <a href="{% url 'member_list' %}">List of Members</a>
+    <h1>Events</h1>
+    <a href="{% url 'member_list' %}">List of Members</a>
   </div>
   <hr>
-  <a class="btn btn-outline.primary btn-sm" href="{%url 'add_event'%}">
+  <a class="btn btn-outline-primary btn-sm" href="{% url 'add_event' %}">
     New Event
-  </a> 
+  </a>
   <hr>
   <table class="table table-light table-hover">
     <thead class="table-dark">
@@ -16,21 +17,24 @@
         <th scope="col">Name</th>
         <th scope="col">Date</th>
         <th scope="col">Target</th>
-        <th scope="col">Description</th> 
-        
+        <th scope="col">Description</th>
+        <th scope="col">Total Contributions</th> <!-- New column for total contributions -->
         <th scope="col">View</th>
       </tr>
     </thead>
     <tbody>
       {% if events %}
         {% for event in events %}
-        <tr>
-            <td>{{event.name}}</td>
-            <td>{{event.date}}</td>
-            <td>{{event.target}}</td>
-            <td>{{event.description}}</td>
+          <tr>
+            <td>{{ event.name }}</td>
+            <td>{{ event.date }}</td>
+            <td>{{ event.target }}</td>
+            <td>{{ event.description }}</td>
             <td>
-              <!-- toggle visibility -->
+              {{event.total}}
+            </td>
+            <td>
+              <!-- Toggle visibility -->
               <button class="btn btn-info btn-sm" onclick="toggleTableVisibility({{ event.id }})">
                 View Contributions
               </button>
@@ -38,7 +42,7 @@
             <td><a href="{% url 'event_contribution' event_id=event.id %}"> Add Contribution</a></td>
           </tr>
           <tr id="contribution-row-{{ event.id }}" style="display: none;">
-            <td colspan="5">
+            <td colspan="6">
               <table class="table table-light table-hover">
                 <thead class="table-dark">
                   <tr>
@@ -49,16 +53,16 @@
                 </thead>
                 <tbody>
                   {% for contribution in event.contributions %}
-                  <tr>
-                    <td>{{ contribution.member }}</td>
-                    <td>{{ contribution.amount }}</td>
-                    <td>{{ contribution.date }}</td>
-                  </tr>
+                    <tr>
+                      <td>{{ contribution.member }}</td>
+                      <td>{{ contribution.amount }}</td>
+                      <td>{{ contribution.date }}</td>
+                    </tr>
                   {% endfor %}
                 </tbody>
               </table>
             </td>
-          </tr>        
+          </tr>
         {% endfor %}
       {% endif %}
     </tbody>
@@ -75,7 +79,5 @@
       }
     }
   </script>
-  
 </body>
 {% endblock %}
-

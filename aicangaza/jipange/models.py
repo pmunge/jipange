@@ -11,12 +11,12 @@ class Member(models.Model):
         return self.name
     
     
-class Event(models.Model):
+class Event(models.Model):      
     name = models.CharField(max_length=100)
     date = models.DateField()
     target = models.IntegerField()
     description = models.CharField(max_length=100)
-
+    total = models.IntegerField()
     def __str__(self):
         return self.name
 

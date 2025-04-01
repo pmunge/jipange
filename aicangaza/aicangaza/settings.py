@@ -40,8 +40,9 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     'crispy_forms',
+
 ]
-CRISPY_TEMPLATE_PACK=' bootstrap4'
+CRISPY_TEMPLATE_PACK= 'bootstrap4'
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -130,3 +131,9 @@ STATICFILES_DIRS = [
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+import os  
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')  # Add this line
+
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'static'),
+]

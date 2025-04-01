@@ -7,9 +7,10 @@ from django.forms.widgets import PasswordInput,TextInput
 
 
 class CreateUserForm(UserCreationForm):
+    email = forms.EmailField(required=True) 
     class Meta:
         model = User
-        fields = ['username', 'password1', 'password2']
+        fields = ['username', 'email','password1', 'password2']
 
 class MemberForm(forms.ModelForm):
     class Meta:

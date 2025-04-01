@@ -67,7 +67,8 @@ def event_list (request):
     events = Event.objects.all()
     for event in events:
         event.contributions = event.contributions_list.all()
-    context = {'events': events}
+        event.total = sum(contribution.amount for contribution in event.contributions.all())
+    context = {'events': events,}
     return render(request, 'jipange/event_list.html', context=context)
 
 #creates a new event
@@ -94,6 +95,7 @@ def event_contribution( request, event_id):
             return redirect('event_list')
     else:
         form = ContributionForm(initial={'event':event})
+       
     return render(request, 'jipange/add_contribution.html',{'form':form, 'event': event})
 
 # function that calculates the total contributions for each event
