@@ -14,7 +14,7 @@ Features
 -  Event-specific contribution tracking
 -  User authentication (optional for admin control)
 
----
+
 
  Tech Stack
 
@@ -23,11 +23,9 @@ Features
 - Database: SQLite 
 - Deployment Ready: WSGI support, static file management
 
----
 
-## 🏁 Getting Started
-
-1. **Clone the repository**
+Getting started 
+clone the repo
    ```bash
    git clone https://github.com/yourusername/contributions-tracker.git
    cd contributions-tracker
