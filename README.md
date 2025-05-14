@@ -2,7 +2,6 @@
 
 A Django-based web application for managing and tracking financial or material contributions per event from a group of people. The system supports full CRUD operations for contributors, events, and their respective contributions.
 
----
 
 Features
 
@@ -26,9 +25,8 @@ Features
 
 Getting started 
 clone the repo
-   ```bash
-   git clone https://github.com/yourusername/contributions-tracker.git
-   cd contributions-tracker
+   https://github.com/pmunge/jipange.git
+   cd jipange
 
 python -m venv venv
 Windows: venv\Scripts\activate. If using Linux source venv/bin/activate
