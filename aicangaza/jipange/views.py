@@ -103,7 +103,7 @@ def event_contribution( request, event_id):
 
 
 @login_required(login_url = 'login')
-def member_list (request, member_id):
+def member_list (request):
     members = Member.objects.all()
     for member in members:
         member.contributions = member.contributions_list.all()

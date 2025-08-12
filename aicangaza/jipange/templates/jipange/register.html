@@ -1,6 +1,8 @@
 {% extends 'jipange/base.html' %}
 {% block content %}
 {% load static %}
+{% load widget_tweaks %}
+
 
 <div class="d-flex justify-content-center align-items-center vh-100 container"> 
     <div class="card p-4 shadow-lg" style="width: 600px;">
@@ -11,22 +13,31 @@
 
             <!-- Username Field -->
             <div class="mb-3">
-                <label for="username" class="form-label">Username</label>
-                <input type="text" id="username" name="username" class="form-control" required>
+                {{ form.username.label_tag }}
+                {{ form.username|add_class:"form-control" }}
+                {% if form.username.errors %}
+                    <small class="text-danger">{{ form.username.errors.0 }}</small>
+                {% endif %}
             </div>
 
             <!-- Email Field -->
+            {% if form.email %}
             <div class="mb-3">
-                <label for="email" class="form-label">Email</label>
-                <input type="email" id="email" name="email" class="form-control" required>
+                {{ form.email.label_tag }}
+                {{ form.email|add_class:"form-control" }}
+                {% if form.email.errors %}
+                    <small class="text-danger">{{ form.email.errors.0 }}</small>
+                {% endif %}
             </div>
+            {% endif %}
 
-            <!-- Password Field with Hover Effect -->
+            <!-- Password -->
             <div class="mb-3">
-                <label for="password" class="form-label">Password</label>
-                <input type="password" id="password" name="password" class="form-control" required>
-                
-                <!-- Password Instructions (Hidden by Default, Appears Below) -->
+                {{ form.password1.label_tag }}
+                {{ form.password1|add_class:"form-control" }}
+                {% if form.password1.errors %}
+                    <small class="text-danger">{{ form.password1.errors.0 }}</small>
+                {% endif %}
                 <small id="password-instructions" class="text-muted d-none">
                     • At least 8 characters<br>
                     • Must include letters & numbers<br>
@@ -36,8 +47,11 @@
 
             <!-- Confirm Password -->
             <div class="mb-3">
-                <label for="password2" class="form-label">Confirm Password</label>
-                <input type="password" id="password2" name="password2" class="form-control" required>
+                {{ form.password2.label_tag }}
+                {{ form.password2|add_class:"form-control" }}
+                {% if form.password2.errors %}
+                    <small class="text-danger">{{ form.password2.errors.0 }}</small>
+                {% endif %}
             </div>
 
             <!-- Submit Button -->
@@ -52,7 +66,7 @@
 
 <script>
     document.addEventListener("DOMContentLoaded", function () {
-        const passwordField = document.getElementById("password");
+        const passwordField = document.getElementById("id_password1");
         const passwordInstructions = document.getElementById("password-instructions");
 
         passwordField.addEventListener("focus", function () {
